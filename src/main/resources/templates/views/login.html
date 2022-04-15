@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www..thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h5>login</h5>
+    <form th:action="@{/toLogin}" method="post">
+        <!--此处的name属性值 即username 和 password  需要和SecurityConfig.java里面的登录页配置参数完全相同-->
+        Username：<input type="text" placeholder="Username" name="username"> <br>
+        Password：<input type="password" name="password">
+        <br>
+        <!--此处的name属性值rememberMe 需要和SecurityConfig.java里面的记住我配置参数完全相同-->
+        <input type="checkbox" name="rememberMe"> 记住我
+        <br>
+        <input type="submit">
+    </form>
+</body>
+</html>

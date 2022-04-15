@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www..thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h5>Index</h5>
+
+    <!--如果未登录，这里使用的是thymeleaf和security的整合包，某些版本的springboot可能不兼容-->
+    <div sec:authorize="!isAuthenticated()">
+        <a th:href="@{/toLogin}">登录</a>
+    </div>
+
+
+    <!--如果登录：用户名，注销-->
+    <div sec:authorize="isAuthenticated()">
+        <a href="">
+            用户名：<span sec:authentication="name"></span>
+            角色：<span sec:authentication="principal.authorities"></span>
+        </a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <a th:href="@{/logout}">注销</a>
+    </div>
+
+    <!--对应权限显示对应内容，没有权限将不能看到其他内容-->
+    <div sec:authorize="hasRole('vip1')">
+        <h1>VIP1可以看到</h1>
+    </div>
+    <div sec:authorize="hasRole('vip2')">
+        <h1>VIP2可以看到</h1>
+    </div>
+    <div sec:authorize="hasRole('vip3')">
+        <h1>VIP3可以看到</h1>
+    </div>
+
+
+</body>
+</html>
